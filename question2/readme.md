@@ -1,3 +1,5 @@
+TAG: bitmap index partitioning.
+
 ## prepare
 
 ```sql

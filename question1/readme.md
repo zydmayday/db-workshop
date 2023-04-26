@@ -1,3 +1,6 @@
+TAG
+covering index.
+
 ## prepare
 
 ```sql
@@ -18,7 +21,7 @@ DELIMITER //
 CREATE PROCEDURE generate_orders(IN num_rows INT)
 BEGIN
   DECLARE i INT DEFAULT 1;
-  
+
   WHILE i <= num_rows DO
     INSERT INTO `leetcode`.`orders` (`order_date`, `total_amount`, `price`, `user_id`)
     VALUES (
@@ -39,3 +42,11 @@ CALL generate_orders(1000);
 ## requirements
 
 Let's say you have a database that contains a table called orders with millions of rows. You need to retrieve the total sales for each day over the past month, grouped by date.
+
+```sql
+SELECT DATE(order_date), SUM(total_amount)
+FROM orders
+WHERE order_date >= DATE_SUB(NOW(), INTERVAL 1 MONTH)
+GROUP BY DATE(order_date)
+ORDER BY DATE(order_date);
+```
