@@ -8,6 +8,9 @@ CREATE TABLE `orders` (
   `price` DECIMAL NOT NULL,
   `user_id` INT NOT NULL,
   PRIMARY KEY (`id`));
+
+-- by default, we have order_date index
+CREATE INDEX ix_orders_date ON orders (order_date);
 ```
 
 ```sql
